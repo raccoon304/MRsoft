@@ -29,8 +29,8 @@ def template(contents, content, id=None):
             <form action="/create/" method ="POST">
                 <div style="text-align:center">
                     <p><input type = "text" name = "title" placeholder = "Id" size= 15></p>
-                    <p><input type ="password" placeholder = "Password" size = 10></textarea></p>    
-                    <p><input type ="submit" value="create"> </p>
+                    <p><input type ="password" placeholder = "Password" size = 15></textarea></p>    
+                    <p><input type ="submit" value="LOGIN" > </p>
                 </div>
             </form>
             {content}
@@ -107,7 +107,7 @@ def update(id):
                 
                 <p><input type = "Id" name = "title" placeholder = "Id" size = 15></p>
                 <p><input type ="password" placeholder = "Password" size=10 ></textarea></p>    
-                <p><input type ="submit" value="create"> </p> jun
+                <p><input type ="submit" value="create"> </p> 
             </form>
         '''
         return template(getcontents(), content)
@@ -122,37 +122,70 @@ def update(id):
         return redirect(url)
     
 @app.route("/test/")
-def size():
+def test():
     return f'''<doctype html>
         <html lang="ko">
             <head>
+            
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+            
             <meta charset="utf-8">
                 <title>select device</title>
             </head>
             <body>
-                    <div style="text-align:center ">
+                    <div style="text-align:center; line-height: 70px;">
                     <h3>select device</h3>
-                    <br>
-                    <h5>robot 1<input type="checkbox" id="cb1"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-                        wearable 1<input type="checkbox" id="cb1"></h5>
-                    <br>
-                    <h5>robot 2<input type="checkbox" id="cb1"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-                        wearable 2<input type="checkbox" id="cb1"></h5>
-                    <br>
-                    <h5>robot 3<input type="checkbox" id="cb1"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
-                        wearable 3<input type="checkbox" id="cb1"></h5>
-                    <label for="cb1"></label>
-                </div>
-                <div class="wrap">
-                    <button class="button">Submit</button>
                     
-                </div>
+                    <form>
+                        <select name="SelectRobot">
+                            <option value="">Robot Select</option>
+                            <option valte="Robot1">Robot1(unable)</option>
+                            <option valte="Robot2">Robot2</option>
+                            <option valte="Robot3">Robot3</option>
+                        </select>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <select name="SelectWearable">
+                            <option value="">Wearable Select</option>
+                            <option valte="Wearable1">Wearable1</option>
+                            <option valte="Wearable2">Wearable2</option>
+                            <option valte="Wearable3">Wearable3</option>
+                        </select>
+                    </form> 
+                    </div>
+                    
+                    <form>
+                        <label for="cb1"></label>
+                        <div style="text-align:center; line-height: 300px;">
+                            <p><input type ="submit" value="select"> </p> 
+                        </div>
+                    </form>
             </body>
         </html>
                 '''
-
-
-
+                
+@app.route("/test2/")
+def test2():
+    return f'''<doctype html>
+        <html lang="ko">
+            <head>
+            
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+            
+            <meta charset="utf-8">
+                <title>select device</title>
+            </head>
+            <body>
+                    <div style="text-align:center; line-height: 70px;">
+                        <h1>device check</h1>
+                        <h3>Motor 1 &nbsp&nbsp&nbsp&nbsp&nbsp Nomal</h3>
+                        <h3>Motor 2 &nbsp&nbsp&nbsp&nbsp&nbsp Nomal</h3>
+                        <h3>Motor 3 &nbsp&nbsp&nbsp&nbsp&nbsp <span style="color:red">Error</span>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp <span style="color:red">temperature Error</span></h3>
+                        <h3>Motor 4 &nbsp&nbsp&nbsp&nbsp&nbsp Nomal</h3>
+                    </div>
+            </body>
+        </html>
+                '''
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0',debug=True)
