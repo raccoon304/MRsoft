@@ -1,0 +1,22 @@
+{% block title %} Main Page {% endblock %}
+
+
+{% block content %}
+
+<html>
+        <body>
+            <div style="text-align:center ">
+                <h1><a href ="/" style='color:green'>PIKA</a></h1>     
+                <h1>Login</h1>
+           
+            <form action="/create/" method ="POST">
+                <div style="text-align:center">
+                    <p><input type = "text" name = "title" placeholder = "Id" size= 15></p>
+                    <p><input type ="password" placeholder = "Password" size = 10></textarea></p>    
+                    <p><input type ="submit" value="create"> </p>
+                </div>
+            </form>
+       </body>
+    </html>
+
+{% endblock %}
